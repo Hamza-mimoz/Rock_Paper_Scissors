@@ -1,5 +1,5 @@
 let humanScore = 0 ;
-let computerScore = 0 ; 
+        let computerScore = 0 ;
 
 
 
@@ -20,18 +20,10 @@ function getComputerChoice(){
     return choice_comptre
 }
 
-function getHumanChoice(){ 
 
-    let choice_humane1 = prompt(" entre your choice rock, papre or scissors : ")
-            choice_humane = choice_humane1.toLowerCase()
-            console.log( choice_humane)
 
-    return choice_humane
-}
-
-function playRound (humanChoice , computerChoice ){
-    humanChoice= getHumanChoice(); 
-    computerChoice = getComputerChoice();
+function playRound (humanChoice , computerChoice ){ 
+    
     if ( humanChoice === "rock" && computerChoice ==="paper" ){
         computerScore ++
         console.log( " You lose! Paper beats Rock");
@@ -71,17 +63,44 @@ function playRound (humanChoice , computerChoice ){
 
 
 
-function play_game(){
-for (let i=0 ; i<5;i++ ){
-playRound()
-}
-if (  humanScore < computerScore ){ 
-    console.log(" you lose the game!! ")
-}else if (computerScore <  humanScore   ){ 
-    console.log("  you are the winner vectorie!! ")
-}
-else{ console.log( " play a new game!!!")}
 
-}
 
-play_game()
+
+document.addEventListener("DOMContentLoaded", () => {
+    alert("welcome to rock , scissors , paper game")
+    
+    const divGame = document.getElementById("divGame");
+  
+         
+        divGame.addEventListener('click', function(e){
+        
+        let target=e.target;
+        let humanChoice= target.id
+        let  computerChoice = getComputerChoice();
+        playRound(humanChoice,computerChoice );
+        
+
+        let player = document.querySelector("#player");
+        
+        player.textContent=humanScore;
+
+        let computer = document.querySelector("#computer");
+        computer.innerHTML= computerScore;
+
+        alert (" your choice is :"+ humanChoice + " computer choice is :"+ computerChoice )
+
+        if ( humanScore === 5 || computerScore === 5){
+            if (humanScore ===5 ){
+                alert( " you are the winner !!!")}
+            else { alert(" the computer win and you lose the game  " )}  
+            humanScore = 0 ; 
+            computerScore = 0;  
+            
+        }
+
+       
+        });
+        
+        
+        
+});
